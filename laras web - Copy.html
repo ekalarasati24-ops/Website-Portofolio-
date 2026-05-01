@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Eka Larasati Ningtyas | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff5f8 0%, #eef2ff 100%);
+            color: #1e1b2f;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes cinematicZoom { 0% { transform: scale(1.4) rotate(-5deg); opacity: 0; filter: blur(10px); } 100% { transform: scale(1) rotate(0deg); opacity: 1; filter: blur(0); } }
+        @keyframes borderGlow { 0% { box-shadow: 0 0 0 0 rgba(217,108,148,0.5); } 50% { box-shadow: 0 0 0 20px rgba(217,108,148,0); } 100% { box-shadow: 0 0 0 0 rgba(217,108,148,0); } }
+        @keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.05); } 70% { transform: scale(0.95); } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+        
+        .animated-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(-45deg, #fff5f8, #ffe0e8, #eef2ff, #f5e6f0); background-size: 400% 400%; animation: gradientBG 15s ease infinite; }
+        
+        .cinematic-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #0a0a1a, #1a1a2e, #16213e); background-size: 300% 300%; animation: gradientBG 8s ease infinite; z-index: 2000; display: flex; justify-content: center; align-items: center; transition: opacity 1s ease, visibility 1s ease; opacity: 1; visibility: visible; }
+        .cinematic-overlay.hide { opacity: 0; visibility: hidden; }
+        .cinematic-content { text-align: center; animation: cinematicZoom 0.8s cubic-bezier(0.34, 1.2, 0.64, 1) forwards; padding: 20px; }
+        .cinematic-logo { width: 130px; height: 130px; background: linear-gradient(135deg, #d96c94, #b5476c); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; animation: borderGlow 2s infinite, float 3s ease-in-out infinite; cursor: pointer; position: relative; overflow: hidden; transition: 0.3s; }
+        .cinematic-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .cinematic-logo i { font-size: 3.5rem; color: white; }
+        .cinematic-logo .logo-hint { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.6); color: white; font-size: 0.55rem; padding: 3px; text-align: center; opacity: 0; transition: 0.3s; }
+        .cinematic-logo:hover .logo-hint { opacity: 1; }
+        body.dev-mode .cinematic-logo .logo-hint { opacity: 1; background: #d96c94; }
+        .cinematic-content h1 { font-size: 2rem; background: linear-gradient(135deg, #fff, #ffb6c1, #d96c94); background-size: 300% 300%; background-clip: text; -webkit-background-clip: text; color: transparent; letter-spacing: 3px; animation: shimmer 3s ease infinite; }
+        .cinematic-content p { color: rgba(255,255,255,0.7); font-size: 0.8rem; letter-spacing: 2px; margin-top: 8px; }
+        .cinematic-click { margin-top: 35px; padding: 12px 30px; background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.5); border-radius: 60px; color: white; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(10px); animation: bounceIn 1s ease; display: inline-block; }
+        .cinematic-click:hover { background: #d96c94; transform: scale(1.05); }
+        
+        .container { max-width: 1280px; margin: 0 auto; padding: 1rem; position: relative; z-index: 1; }
+        
+        @media (max-width: 768px) {
+            .container { padding: 0.8rem; }
+            .hero { flex-direction: column; text-align: center; padding: 1.2rem; gap: 1rem; }
+            .hero-text h1 { font-size: 1.6rem; }
+            .hero-subtitle { font-size: 0.9rem; }
+            .avatar-img { width: 120px; height: 120px; }
+            .section-title { font-size: 1.3rem; }
+            .section { padding: 1.2rem; }
+            .grid-2col { grid-template-columns: 1fr; }
+            .portfolio-gallery { grid-template-columns: 1fr; }
+            .cinematic-logo { width: 100px; height: 100px; }
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.7rem; }
+        }
+        
+        .mode-badge { position: fixed; top: 15px; right: 15px; background: rgba(0,0,0,0.7); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; z-index: 100; font-family: monospace; pointer-events: none; }
+        nav { background: rgba(255,248,250,0.95); backdrop-filter: blur(12px); border-radius: 50px; padding: 0.5rem 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,210,220,0.5); position: sticky; top: 10px; z-index: 50; }
+        .nav-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; list-style: none; }
+        .nav-links a { text-decoration: none; font-weight: 600; color: #4a3b5c; transition: 0.3s; padding: 0.3rem 0; border-bottom: 2px solid transparent; font-size: 0.8rem; }
+        .nav-links a:hover { color: #d46b8c; border-bottom-color: #d96c94; }
+        
+        .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; background: #ffffffdd; backdrop-filter: blur(10px); border-radius: 1.5rem; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid #ffe2ec; transition: 0.3s; }
+        .hero:hover { transform: translateY(-3px); }
+        .hero-text { flex: 2; animation: fadeInLeft 0.8s ease; }
+        .hero-text h1 { font-size: 2rem; background: linear-gradient(135deg, #b15e7c, #6c8fd4); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .hero-subtitle { font-size: 1rem; font-weight: 500; color: #d96c94; margin: 0.3rem 0; }
+        .hero-badge { display: inline-block; background: linear-gradient(135deg, #ffe0e8, #ffd4e0); padding: 0.2rem 0.8rem; border-radius: 40px; font-size: 0.7rem; font-weight: 600; color: #b3456b; margin-bottom: 0.8rem; animation: pulse 2s infinite; }
+        .hero-text p { color: #4a425c; line-height: 1.5; font-size: 0.85rem; }
+        .hero-avatar { flex: 1; text-align: center; cursor: pointer; animation: fadeInRight 0.8s ease; }
+        .avatar-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid #ffe0ec; animation: float 3s ease-in-out infinite; transition: 0.3s; }
+        .avatar-img:hover { transform: scale(1.05); }
+        .upload-profile-btn { display: none; margin-top: 10px; background: #d96c94; color: white; border: none; padding: 5px 12px; border-radius: 30px; font-size: 0.65rem; cursor: pointer; }
+        body.dev-mode .upload-profile-btn { display: inline-flex; align-items: center; gap: 5px; }
+        
+        .section { background: #ffffffcc; backdrop-filter: blur(4px); border-radius: 1.5rem; padding: 1.5rem; margin-bottom: 1.8rem; border: 1px solid #ffdee9; }
+        .section-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; border-bottom: 3px solid #ffd9e4; padding-bottom: 0.5rem; color: #b14d72; }
+        .grid-2col { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+        .clickable-card { background: #fffafc; border-radius: 1rem; padding: 1rem; transition: 0.3s; border: 1px solid #ffecf1; cursor: pointer; }
+        .clickable-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -10px rgba(176,90,120,0.2); border-color: #fbc4d4; }
+        .clickable-card h3 { font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 8px; color: #2c3e66; }
+        .clickable-card p { font-size: 0.8rem; color: #5a4a6e; margin-top: 5px; }
+        .clickable-card .year { font-size: 0.65rem; background: #e9eefd; display: inline-block; padding: 0.15rem 0.7rem; border-radius: 40px; color: #5b6eae; margin-top: 0.5rem; }
+        .clickable-card .view-detail { margin-top: 10px; font-size: 0.65rem; color: #d96c94; display: flex; align-items: center; gap: 5px; }
+        
+        .portfolio-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
+        .portfolio-card { background: #fff; border-radius: 1.2rem; overflow: hidden; border: 1px solid #ffe2ec; cursor: pointer; transition: 0.3s; }
+        .portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 15px 25px -12px rgba(176,90,120,0.2); }
+        .portfolio-img-preview { width: 100%; height: 150px; background: #fef0f5; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: #b45d7e; }
+        .portfolio-info { padding: 0.8rem; }
+        .portfolio-info h4 { font-size: 1rem; font-weight: 700; color: #2b3b6e; }
+        .portfolio-info p { font-size: 0.75rem; color: #635e74; margin-top: 4px; }
+        
+        .social-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+        .social-card { background: #fff5f8; border-radius: 2rem; padding: 0.6rem 1.2rem; display: inline-flex; align-items: center; gap: 8px; border: 1px solid #ffe2eb; text-decoration: none; color: #4f3f60; font-weight: 500; font-size: 0.8rem; transition: 0.3s; }
+        .social-card:hover { transform: translateY(-3px); background: #feeef3; color: #b5476c; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; padding: 10px; }
+        .modal.active { display: flex; }
+        .modal-content { background: white; border-radius: 1.5rem; max-width: 600px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 1.2rem; position: relative; }
+        .modal-close { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; }
+        .modal-gallery { display: flex; flex-wrap: wrap; gap: 10px; margin: 15px 0; justify-content: center; }
+        .gallery-item { position: relative; }
+        .gallery-item img { width: 100px; height: 100px; object-fit: cover; border-radius: 12px; cursor: pointer; border: 2px solid #ffe0ec; }
+        .delete-photo-btn { position: absolute; top: -8px; right: -8px; background: #e74c3c; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 0.6rem; cursor: pointer; display: none; align-items: center; justify-content: center; }
+        body.dev-mode .delete-photo-btn { display: flex; }
+        .dev-edit-btn { display: none; margin-top: 12px; padding: 8px 16px; background: #d96c94; color: white; border: none; border-radius: 30px; cursor: pointer; font-size: 0.8rem; width: 100%; }
+        body.dev-mode .dev-edit-btn { display: block; }
+        
+        .save-status { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #4caf50; color: white; padding: 8px 20px; border-radius: 40px; font-size: 0.75rem; z-index: 1000; opacity: 0; transition: 0.3s; pointer-events: none; white-space: nowrap; }
+        footer { text-align: center; padding: 1.5rem 0 1rem; color: #8e7c9a; border-top: 1px solid #ffdee9; margin-top: 1rem; font-size: 0.7rem; }
+        .profile-detail-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1500; justify-content: center; align-items: center; padding: 20px; }
+        .profile-detail-modal.active { display: flex; }
+        .profile-detail-card { background: white; border-radius: 1.5rem; max-width: 350px; width: 90%; padding: 1.2rem; text-align: center; position: relative; }
+        .profile-detail-card .avatar-large { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid #d96c94; margin-bottom: 0.8rem; }
+    </style>
+</head>
+<body>
+    <div class="cinematic-overlay" id="cinematicOverlay">
+        <div class="cinematic-content">
+            <div class="cinematic-logo" id="cinematicLogo">
+                <i class="fas fa-leaf" id="cinematicLogoIcon"></i>
+                <img id="cinematicLogoImg" style="display: none;">
+                <div class="logo-hint"><i class="fas fa-camera"></i> Ganti logo</div>
+            </div>
+            <h1>EKA LARASATI</h1>
+            <p>ENVIRONMENTAL LEADER | WASTE MANAGEMENT</p>
+            <div class="cinematic-click" id="enterBtn"><i class="fas fa-arrow-right"></i> ENTER</div>
+        </div>
+    </div>
+    <div class="animated-bg"></div>
+    <div class="mode-badge" id="modeBadge">🌍 PUBLIC</div>
+    <div class="container" id="mainContent" style="display: none;">
+        <nav><ul class="nav-links"><li><a href="#beranda">🏠</a></li><li><a href="#prestasi">🏆</a></li><li><a href="#pengalaman">💼</a></li><li><a href="#portofolio">📁</a></li><li><a href="#sosial">📱</a></li></ul></nav>
+        <div id="beranda" class="hero">
+            <div class="hero-text">
+                <h1>Eka Larasati Ningtyas</h1>
+                <div class="hero-subtitle">🌿 Pengolahan Limbah | PPNS</div>
+                <div class="hero-badge"><i class="fas fa-leaf"></i> Mahasiswa Aktif</div>
+                <p>Mahasiswa D4 Teknik Pengolahan Limbah di PPNS. Aktif di BEM PPNS, NOVO, serta volunteer lingkungan.</p>
+            </div>
+            <div class="hero-avatar" id="avatarClick">
+                <img class="avatar-img" id="profileImage" src="https://ui-avatars.com/api/?background=f9cedf&color=9b4a6b&rounded=true&size=180&bold=true&name=Eka+Larasati">
+                <button class="upload-profile-btn" id="uploadProfileBtn"><i class="fas fa-camera"></i> Ganti Foto</button>
+                <input type="file" id="profileUploadInput" accept="image/*" style="display:none">
+                <p style="font-size:0.6rem; margin-top:6px;">Klik foto</p>
+            </div>
+        </div>
+        <div id="prestasi" class="section"><div class="section-title"><i class="fas fa-trophy"></i><span>Prestasi</span></div><div class="grid-2col" id="prestasiContainer"></div></div>
+        <div id="pengalaman" class="section"><div class="section-title"><i class="fas fa-briefcase"></i><span>Pengalaman</span></div><div class="grid-2col" id="pengalamanContainer"></div></div>
+        <div id="portofolio" class="section"><div class="section-title"><i class="fas fa-folder-open"></i><span>Portofolio</span></div><div class="portfolio-gallery" id="portofolioContainer"></div></div>
+        <div id="sosial" class="section">
+            <div class="section-title"><i class="fas fa-hashtag"></i><span>Ikuti</span></div>
+            <div class="social-grid">
+                <a href="https://www.instagram.com/ekalarasatiii" class="social-card" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.tiktok.com/@ekalarasatiii" class="social-card" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a href="https://www.linkedin.com/in/eka-larasati-ningtyas-837677340" class="social-card" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            </div>
+            <div style="text-align:center; margin-top:1rem; background:#fff2f7; border-radius:40px; padding:0.6rem;">
+                <i class="fas fa-envelope"></i> ekalarasatiii24@gmail.com<br>
+                <i class="fas fa-phone-alt"></i> +62 822-3135-6661
+            </div>
+        </div>
+        <footer><p>© 2025 Eka Larasati Ningtyas — Portfolio</p>
+        <p>✨ Tekan <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd> untuk mode edit (hanya untuk Anda) ✨</p></footer>
+    </div>
+    <div id="profileDetailModal" class="profile-detail-modal"><div class="profile-detail-card"><span id="profileDetailClose" style="position:absolute;top:10px;right:15px;font-size:1.3rem;cursor:pointer;">&times;</span><img id="profileDetailImg" class="avatar-large"><h2>Eka Larasati Ningtyas</h2><p>D4 Teknik Pengolahan Limbah - PPNS<br>Aktif di BEM, NOVO, Volunteer<br>Passion: Lingkungan & Desain</p></div></div>
+    <div id="modal" class="modal"><div class="modal-content"><span class="modal-close" id="modalClose">&times;</span><h3 id="modalTitle" style="font-size:1.1rem;"></h3><p id="modalDesc" style="font-size:0.8rem;"></p><div id="modalGallery" class="modal-gallery"></div><button class="dev-edit-btn" id="editBtn"><i class="fas fa-plus"></i> Tambah Foto</button><input type="file" id="editUpload" multiple accept="image/*" style="display:none"></div></div>
+    <div class="save-status" id="saveStatus">✅ Tersimpan!</div>
+
+    <script>
+        // DEFAULT IMAGES (PUBLIC) - GANTI DENGAN URL FOTO ANDA SENDIRI
+        const DEFAULT_CINEMATIC_LOGO = "https://ui-avatars.com/api/?background=d96c94&color=fff&rounded=true&size=150&bold=true&name=EKA";
+        const DEFAULT_PROFILE_PHOTO = "https://ui-avatars.com/api/?background=f9cedf&color=9b4a6b&rounded=true&size=180&bold=true&name=Eka+Larasati";
+        
+        // ==================== INDEXEDDB UNTUK AUTO SAVE PERMANEN ====================
+        const DB_NAME = 'EkaPortfolioPublic';
+        let db = null;
+        
+        function initDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, 3);
+                request.onerror = () => reject(request.error);
+                request.onsuccess = () => { db = request.result; resolve(db); };
+                request.onupgradeneeded = (e) => {
+                    const dbTmp = e.target.result;
+                    if (!dbTmp.objectStoreNames.contains('prestasi')) dbTmp.createObjectStore('prestasi', { keyPath: 'id' });
+                    if (!dbTmp.objectStoreNames.contains('pengalaman')) dbTmp.createObjectStore('pengalaman', { keyPath: 'id' });
+                    if (!dbTmp.objectStoreNames.contains('portofolio')) dbTmp.createObjectStore('portofolio', { keyPath: 'id' });
+                    if (!dbTmp.objectStoreNames.contains('profile')) dbTmp.createObjectStore('profile');
+                    if (!dbTmp.objectStoreNames.contains('cinematic')) dbTmp.createObjectStore('cinematic');
+                };
+            });
+        }
+        
+        async function saveToStore(storeName, data, key = null) {
+            if (!db) await initDB();
+            return new Promise((resolve, reject) => {
+                const tx = db.transaction([storeName], 'readwrite');
+                const store = tx.objectStore(storeName);
+                let request;
+                if (key !== null) request = store.put(data, key);
+                else request = store.put(data);
+                request.onsuccess = () => resolve();
+                request.onerror = () => reject(request.error);
+            });
+        }
+        
+        async function loadAllFromStore(storeName) {
+            if (!db) await initDB();
+            return new Promise((resolve) => {
+                const tx = db.transaction([storeName], 'readonly');
+                const store = tx.objectStore(storeName);
+                const request = store.getAll();
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => resolve([]);
+            });
+        }
+        
+        async function loadSingleFromStore(storeName, key) {
+            if (!db) await initDB();
+            return new Promise((resolve) => {
+                const tx = db.transaction([storeName], 'readonly');
+                const store = tx.objectStore(storeName);
+                const request = store.get(key);
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => resolve(null);
+            });
+        }
+        
+        // DATA GALLERIES
+        let currentEditId = null, currentEditType = null;
+        
+        const prestasiData = [
+            { id: 0, title: "2nd Runner-Up Dance Competition DBL 2021", desc: "Juara 3 Dance Competition DBL Indonesia, koreografi kreatif", year: "2021", gallery: [] },
+            { id: 1, title: "Master of Ceremony - Graduation 46 Stembaya", desc: "Pembawa acara kelulusan Stembaya 2023", year: "2023", gallery: [] },
+            { id: 2, title: "MC Paskibraka Platoon 12 Event", desc: "Pembawa acara event Paskibraka tingkat regional", year: "2023", gallery: [] },
+            { id: 3, title: "Sertifikat Kompetensi Uji Lingkungan", desc: "Menguasai teknik sampling, uji pH, TDS, TSS", year: "2024", gallery: [] }
+        ];
+        
+        const pengalamanData = [
+            { id: 0, title: "Quality Control - PT. Sumatraco", desc: "Magang QC analisa kualitas garam", year: "2024", gallery: [] },
+            { id: 1, title: "Barista & Cashier - Cafe Roasterrich", desc: "Pembuatan kopi, layanan pelanggan", year: "2023-2025", gallery: [] },
+            { id: 2, title: "OSIS SMKN 5 Surabaya", desc: "Ketua Sekbid 7 & 2, inovasi program", year: "2021-2023", gallery: [] },
+            { id: 3, title: "Paskibraka Passus", desc: "Divisi Editing & Sponsorship", year: "2021-sekarang", gallery: [] },
+            { id: 4, title: "Staf Magang BEM PPNS 2025", desc: "Skill organisasi kampus", year: "2025", gallery: [] },
+            { id: 5, title: "Staf Ahli BEM PPNS 2026-2027", desc: "Tanggung jawab strategis", year: "2026-2027", gallery: [] },
+            { id: 6, title: "NOVO 2026-2027", desc: "Organisasi eksternal", year: "2026-2027", gallery: [] },
+            { id: 7, title: "Volunteer Green Cup", desc: "Mengajar & berbagi takjil", year: "2026", gallery: [] },
+            { id: 8, title: "Green Cup 2025", desc: "Penghijauan ramah lingkungan", year: "2025", gallery: [] }
+        ];
+        
+        const portofolioData = [
+            { id: 0, title: "Logo Design", desc: "Desain logo modern untuk event", icon: "fas fa-paintbrush", gallery: [] },
+            { id: 1, title: "Pamflet Digital", desc: "Pamflet promosi acara", icon: "fas fa-scroll", gallery: [] },
+            { id: 2, title: "Feeds Instagram", desc: "Desain feed IG kreatif", icon: "fab fa-instagram", gallery: [] },
+            { id: 3, title: "Video Editing", desc: "Editing video dokumentasi", icon: "fas fa-video", gallery: [] }
+        ];
+        
+        async function loadAllData() {
+            const prestasiSaved = await loadAllFromStore('prestasi');
+            if (prestasiSaved.length) prestasiSaved.forEach(s => { const item = prestasiData.find(d => d.id === s.id); if(item && s.gallery) item.gallery = s.gallery; });
+            const pengalamanSaved = await loadAllFromStore('pengalaman');
+            if (pengalamanSaved.length) pengalamanSaved.forEach(s => { const item = pengalamanData.find(d => d.id === s.id); if(item && s.gallery) item.gallery = s.gallery; });
+            const portofolioSaved = await loadAllFromStore('portofolio');
+            if (portofolioSaved.length) portofolioSaved.forEach(s => { const item = portofolioData.find(d => d.id === s.id); if(item && s.gallery) item.gallery = s.gallery; });
+            
+            const profileImg = await loadSingleFromStore('profile', 'photo');
+            if (profileImg) document.getElementById('profileImage').src = profileImg;
+            else document.getElementById('profileImage').src = DEFAULT_PROFILE_PHOTO;
+            
+            const cinematicLogo = await loadSingleFromStore('cinematic', 'logo');
+            if (cinematicLogo) {
+                const logoImg = document.getElementById('cinematicLogoImg');
+                const logoIcon = document.getElementById('cinematicLogoIcon');
+                logoImg.src = cinematicLogo;
+                logoImg.style.display = 'block';
+                logoIcon.style.display = 'none';
+            } else {
+                const logoImg = document.getElementById('cinematicLogoImg');
+                const logoIcon = document.getElementById('cinematicLogoIcon');
+                logoImg.src = DEFAULT_CINEMATIC_LOGO;
+                logoImg.style.display = 'block';
+                logoIcon.style.display = 'none';
+            }
+        }
+        
+        async function saveAllGalleries() {
+            for (const item of prestasiData) await saveToStore('prestasi', { id: item.id, gallery: item.gallery });
+            for (const item of pengalamanData) await saveToStore('pengalaman', { id: item.id, gallery: item.gallery });
+            for (const item of portofolioData) await saveToStore('portofolio', { id: item.id, gallery: item.gallery });
+        }
+        
+        function showNotification() { const s = document.getElementById('saveStatus'); s.style.opacity = '1'; setTimeout(() => s.style.opacity = '0', 1500); }
+        
+        function renderPrestasi() {
+            document.getElementById('prestasiContainer').innerHTML = prestasiData.map(item => `
+                <div class="clickable-card" onclick="openModal('prestasi', ${item.id})">
+                    <h3><i class="fas fa-medal"></i> ${item.title}</h3>
+                    <p>${item.desc.substring(0,80)}${item.desc.length>80?'...':''}</p>
+                    <div class="year">${item.year}</div>
+                    <div class="view-detail"><i class="fas fa-images"></i> ${item.gallery.length} foto</div>
+                </div>
+            `).join('');
+        }
+        
+        function renderPengalaman() {
+            document.getElementById('pengalamanContainer').innerHTML = pengalamanData.map(item => `
+                <div class="clickable-card" onclick="openModal('pengalaman', ${item.id})">
+                    <h3><i class="fas fa-briefcase"></i> ${item.title}</h3>
+                    <p>${item.desc.substring(0,80)}${item.desc.length>80?'...':''}</p>
+                    <div class="year">${item.year}</div>
+                    <div class="view-detail"><i class="fas fa-images"></i> ${item.gallery.length} foto</div>
+                </div>
+            `).join('');
+        }
+        
+        function renderPortofolio() {
+            document.getElementById('portofolioContainer').innerHTML = portofolioData.map(item => `
+                <div class="portfolio-card" onclick="openModal('portofolio', ${item.id})">
+                    <div class="portfolio-img-preview">${item.gallery.length>0?`<img src="${item.gallery[0]}" style="width:100%;height:100%;object-fit:cover;">`:`<i class="${item.icon}"></i>`}</div>
+                    <div class="portfolio-info"><h4>${item.title}</h4><p>${item.desc.substring(0,60)}${item.desc.length>60?'...':''}</p><div class="view-detail"><i class="fas fa-images"></i> ${item.gallery.length} foto</div></div>
+                </div>
+            `).join('');
+        }
+        
+        function renderAll() { renderPrestasi(); renderPengalaman(); renderPortofolio(); }
+        
+        async function deletePhoto(idx) {
+            let data;
+            if (currentEditType === 'prestasi') data = prestasiData.find(d => d.id === currentEditId);
+            else if (currentEditType === 'pengalaman') data = pengalamanData.find(d => d.id === currentEditId);
+            else data = portofolioData.find(d => d.id === currentEditId);
+            if (data && data.gallery[idx]) { data.gallery.splice(idx,1); await saveAllGalleries(); renderAll(); await openModal(currentEditType, currentEditId); showNotification(); }
+        }
+        
+        async function openModal(type, id) {
+            currentEditId = id; currentEditType = type;
+            let data = type === 'prestasi' ? prestasiData.find(d=>d.id===id) : type === 'pengalaman' ? pengalamanData.find(d=>d.id===id) : portofolioData.find(d=>d.id===id);
+            document.getElementById('modalTitle').innerHTML = `<i class="fas ${type==='prestasi'?'fa-trophy':type==='pengalaman'?'fa-briefcase':'fa-folder-open'}"></i> ${data.title}`;
+            document.getElementById('modalDesc').innerHTML = data.desc + (data.year ? `<br><small style="color:#d96c94">${data.year}</small>` : '');
+            const galleryDiv = document.getElementById('modalGallery');
+            if (data.gallery.length === 0) galleryDiv.innerHTML = '<p style="color:#999; text-align:center; padding:15px;">📷 Belum ada foto.</p>';
+            else galleryDiv.innerHTML = data.gallery.map((img, idx) => `<div class="gallery-item"><img src="${img}" onclick="window.open(this.src)"><button class="delete-photo-btn" onclick="event.stopPropagation(); deletePhoto(${idx});"><i class="fas fa-trash-alt"></i></button></div>`).join('');
+            document.getElementById('modal').classList.add('active');
+        }
+        
+        function closeModal() { document.getElementById('modal').classList.remove('active'); }
+        
+        function initDevMode() {
+            const editBtn = document.getElementById('editBtn'), uploadInput = document.getElementById('editUpload');
+            editBtn.onclick = () => { uploadInput.value = ''; uploadInput.click(); };
+            uploadInput.onchange = async (e) => {
+                const files = Array.from(e.target.files);
+                let data = currentEditType === 'prestasi' ? prestasiData.find(d=>d.id===currentEditId) : currentEditType === 'pengalaman' ? pengalamanData.find(d=>d.id===currentEditId) : portofolioData.find(d=>d.id===currentEditId);
+                if (!data) return;
+                for (const file of files) {
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        await new Promise(r => { reader.onload = (ev) => { data.gallery.push(ev.target.result); r(); }; reader.readAsDataURL(file); });
+                    }
+                }
+                await saveAllGalleries(); renderAll(); await openModal(currentEditType, currentEditId); showNotification();
+            };
+        }
+        
+        function initCinematicLogoUpload() {
+            const logoContainer = document.getElementById('cinematicLogo'), logoImg = document.getElementById('cinematicLogoImg'), logoIcon = document.getElementById('cinematicLogoIcon');
+            const fileInput = document.createElement('input'); fileInput.type = 'file'; fileInput.accept = 'image/*'; fileInput.style.display = 'none'; document.body.appendChild(fileInput);
+            logoContainer.addEventListener('click', () => { if (document.body.classList.contains('dev-mode')) fileInput.click(); });
+            fileInput.addEventListener('change', async (e) => {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = async (ev) => { const imgData = ev.target.result; logoImg.src = imgData; logoImg.style.display = 'block'; logoIcon.style.display = 'none'; await saveToStore('cinematic', imgData, 'logo'); showNotification(); };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+        
+        async function initProfileUpload() {
+            const uploadBtn = document.getElementById('uploadProfileBtn'), profileInput = document.getElementById('profileUploadInput'), profileImg = document.getElementById('profileImage');
+            if (uploadBtn) uploadBtn.onclick = () => { profileInput.value = ''; profileInput.click(); };
+            profileInput.onchange = async (e) => {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = async (ev) => { const imgData = ev.target.result; profileImg.src = imgData; await saveToStore('profile', imgData, 'photo'); showNotification(); };
+                    reader.readAsDataURL(file);
+                }
+            };
+        }
+        
+        // CINEMATIC ENTER
+        const cinematicOverlay = document.getElementById('cinematicOverlay'), mainContent = document.getElementById('mainContent'), enterBtn = document.getElementById('enterBtn');
+        function showMain() { cinematicOverlay.classList.add('hide'); mainContent.style.display = 'block'; setTimeout(() => cinematicOverlay.style.display = 'none', 800); }
+        if (enterBtn) enterBtn.addEventListener('click', (e) => { e.preventDefault(); showMain(); });
+        cinematicOverlay.addEventListener('click', (e) => { if (e.target === cinematicOverlay) showMain(); });
+        
+        // PROFILE MODAL
+        const profileModal = document.getElementById('profileDetailModal'), profileDetailImg = document.getElementById('profileDetailImg'), avatarClick = document.getElementById('avatarClick'), profileClose = document.getElementById('profileDetailClose');
+        avatarClick.addEventListener('click', () => { profileDetailImg.src = document.getElementById('profileImage').src; profileModal.classList.add('active'); });
+        profileClose.addEventListener('click', () => profileModal.classList.remove('active'));
+        profileModal.addEventListener('click', (e) => { if (e.target === profileModal) profileModal.classList.remove('active'); });
+        
+        // DEV MODE
+        let isDevMode = false;
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                isDevMode = !isDevMode;
+                if (isDevMode) { document.body.classList.add('dev-mode'); document.getElementById('modeBadge').innerHTML = '🔧 DEV MODE'; document.getElementById('modeBadge').style.background = '#d96c94'; }
+                else { document.body.classList.remove('dev-mode'); document.getElementById('modeBadge').innerHTML = '🌍 PUBLIC'; document.getElementById('modeBadge').style.background = 'rgba(0,0,0,0.7)'; }
+            }
+        });
+        
+        function syncButtons() { const btn = document.getElementById('uploadProfileBtn'); if (btn) btn.style.display = document.body.classList.contains('dev-mode') ? 'inline-flex' : 'none'; }
+        new MutationObserver(() => syncButtons()).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+        
+        document.getElementById('modalClose').onclick = closeModal;
+        window.onclick = (e) => { if (e.target === document.getElementById('modal')) closeModal(); };
+        
+        (async () => {
+            await initDB();
+            await loadAllData();
+            renderAll();
+            initDevMode();
+            await initProfileUpload();
+            initCinematicLogoUpload();
+            syncButtons();
+            window.deletePhoto = deletePhoto;
+            window.openModal = openModal;
+        })();
+    </script>
+</body>
+</html>
